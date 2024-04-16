@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        // .map() does not mutate the original array
+        // .map() returns a new array with the same length than the original one
+
+        // .map() receives a callback as an argument
+        // the argumented callback has a default parameter: each array position
+
+        // Each position from the new array will have the returned value on each iteration
+
+
+
+
+        // Example 1
+        const originalNumbers = [1, 2, 3, 4]
+
+        const doubledValues = originalNumbers.map((eachNumber) => {
+            return eachNumber * 2
+        })
+
+        console.log(doubledValues)
+
+
+
+
+
+
+        console.log('-------')
+
+
+
+
+
+        // Example 2
+        const originalDrinks = ['agua', 'kas', 'cervemocho']
+
+        const capitalizedStrings = originalDrinks.map((eachDrink) => {
+            const firstLetter = eachDrink[0].toUpperCase()
+            const rest = eachDrink.substring(1)
+            const fullDrink = firstLetter + rest
+            return fullDrink
+        })
+
+        console.log(capitalizedStrings)
+
+
+
+
+
+        console.log('-------')
+
+
+
+
+
+        // Example 3
+        const students = [
+            {
+                name: 'Tony Parker',
+                firstProject: 80,
+                secondProject: 75,
+                finalExam: 90
+            },
+            {
+                name: 'Marc Barchini',
+                firstProject: 84,
+                secondProject: 65,
+                finalExam: 65
+            },
+            {
+                name: 'Claudia Lopez',
+                firstProject: 45,
+                secondProject: 95,
+                finalExam: 99
+            },
+            {
+                name: 'Alvaro Briattore',
+                firstProject: 82,
+                secondProject: 92,
+                finalExam: 70
+            }
+        ]
+
+
+        // TRY 1 -> ERROR: Student info needed
+        const finalGrades1 = students.map((eachStudent) => {
+            const projectsAvg = (eachStudent.firstProject + eachStudent.secondProject) / 2
+            const projectsPart = projectsAvg * .6
+            const examPart = eachStudent.finalExam * .4
+
+            const finalGrade = projectsPart + examPart
+
+            return finalGrade.toFixed(1)
+        })
+
+
+        console.log(finalGrades1)
+
+
+
+
+        // TRY 2 -> ERROR: ALL info student needed
+        const finalGrades2 = students.map((eachStudent) => {
+            const projectsAvg = (eachStudent.firstProject + eachStudent.secondProject) / 2
+            const projectsPart = projectsAvg * .6
+            const examPart = eachStudent.finalExam * .4
+
+            const finalGrade = projectsPart + examPart
+
+            const studentObj = {
+                studentName: eachStudent.name,
+                finalGrade: finalGrade
+            }
+
+            return studentObj
+        })
+
+
+        console.log(finalGrades2)
+
+
+
+        // TRY 3 -> NICE :3
+        const finalGrades3 = students.map((eachStudent) => {
+            const projectsAvg = (eachStudent.firstProject + eachStudent.secondProject) / 2
+            const projectsPart = projectsAvg * .6
+            const examPart = eachStudent.finalExam * .4
+
+            const finalGrade = projectsPart + examPart
+
+            const studentObj = {
+                ...eachStudent,             // operador de propagación (spread operator)
+                finalGrade: finalGrade
+            }
+
+            return studentObj
+        })
+
+
+        console.log(finalGrades3)
+
+
+    </script>
+</body>
+
+</html>
